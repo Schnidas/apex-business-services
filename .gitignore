@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+.vercel
+*.tsbuildinfo
+# tsc -b composite emit artifacts
+vite.config.js
+vite.config.d.ts
+logs
+*.log
+npm-debug.log*

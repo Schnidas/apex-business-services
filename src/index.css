@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ember: #ee7b47;
+  --ember-bright: #ff9e6b;
+  --ember-deep: #c9551f;
+  --coal: #171310;
+  --ink: #221c17;
+  --canvas: #efebe6;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-feature-settings: "ss01", "cv01";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgba(238, 123, 71, 0.26);
+    color: var(--ink);
+  }
+  h1, h2, h3, h4 {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  /* Custom scrollbar — warm, subtle */
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: #e6e0d8; }
+  ::-webkit-scrollbar-thumb {
+    background: #cbbfb0;
+    border-radius: 99px;
+    border: 3px solid #e6e0d8;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ember); }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 56px);
+  }
+
+  /* ---- Type scale ---- */
+  .type-mega {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    font-weight: 800;
+    font-size: clamp(2.9rem, 9vw, 7.2rem);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+  }
+  .type-h1 {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.1rem, 5.4vw, 4rem);
+    line-height: 0.98;
+    letter-spacing: -0.028em;
+  }
+  .type-h2 {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(1.65rem, 3.6vw, 2.7rem);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+  }
+  .type-h3 {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+  .type-body {
+    font-size: clamp(1rem, 1.15vw, 1.12rem);
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .type-lead {
+    font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+    line-height: 1.5;
+    color: rgba(34, 28, 23, 0.72);
+    font-weight: 400;
+  }
+
+  .eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .ember-text {
+    color: var(--ember-deep);
+  }
+
+  /* Pill / button base */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #f4895a 0%, var(--ember) 55%, var(--ember-deep) 130%);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.97rem;
+    padding: 0.92rem 1.5rem;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.35) inset,
+      0 14px 30px -12px rgba(201, 85, 31, 0.65);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset,
+      0 20px 44px -12px rgba(201, 85, 31, 0.8);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(34, 28, 23, 0.2);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.97rem;
+    padding: 0.92rem 1.5rem;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+    transition: border-color 0.35s, background 0.35s, transform 0.35s;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(34, 28, 23, 0.42);
+    background: rgba(255, 255, 255, 0.75);
+    transform: translateY(-2px);
+  }
+
+  /* Card surfaces */
+  .panel {
+    background: #f7f4ef;
+    border: 1px solid rgba(34, 28, 23, 0.1);
+    border-radius: 18px;
+  }
+  .panel-dark {
+    background: linear-gradient(180deg, #211b16 0%, #171310 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+  }
+
+  /* Hairline grid texture for instrument-panel feel */
+  .grid-mesh {
+    background-image: linear-gradient(rgba(34, 28, 23, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34, 28, 23, 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .grid-mesh-dark {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .ember-underline {
+    background-image: linear-gradient(var(--ember), var(--ember));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  /* Reveal helper used by GSAP/IO */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* ---- Section keyframes (AI studio visuals) ---- */
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.28); }
+  50% { transform: scaleY(1); }
+}
+@keyframes scanx {
+  0% { transform: translateX(-130%); }
+  100% { transform: translateX(240%); }
+}
+@keyframes flowdash {
+  to { stroke-dashoffset: -32; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes orbitspin {
+  to { transform: rotate(360deg); }
+}
+
+/* Global reduced-motion damper — neutralizes every animation/transition. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
